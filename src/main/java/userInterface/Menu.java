@@ -1,6 +1,7 @@
 package userInterface;
 
 import files.FilesCommander;
+import validator.Validate;
 
 import java.util.Scanner;
 
@@ -30,9 +31,11 @@ public class Menu {
             String prefix = scanner.nextLine();
             System.out.println("Press X continue or anything else to cancel");
             String decision = scanner.nextLine();
-            if(decision.equalsIgnoreCase("X")) {
+            if(decision.equalsIgnoreCase("X") && !Validate.hasRestrictedCharacters(prefix)) {
                 FilesCommander.addPrefix(path, prefix);
                 System.out.println("SUCCESSFUL");
+            } else {
+                System.out.println("NOT COMPLETED");
             }
         } catch (Exception e) {
             System.out.println("Something went wrong");
@@ -49,9 +52,11 @@ public class Menu {
             String suffix = scanner.nextLine();
             System.out.println("Press X continue or anything else to cancel");
             String decision = scanner.nextLine();
-            if(decision.equalsIgnoreCase("X")) {
+            if(decision.equalsIgnoreCase("X") && !Validate.hasRestrictedCharacters(suffix)) {
                 FilesCommander.addSuffix(path, suffix);
                 System.out.println("SUCCESSFUL");
+            } else {
+                System.out.println("NOT COMPLETED");
             }
             mainMenu();
         } catch (Exception e) {
@@ -70,9 +75,11 @@ public class Menu {
             String endSubstring = scanner.nextLine();
             System.out.println("Press X continue or anything else to cancel");
             String decision = scanner.nextLine();
-            if(decision.equalsIgnoreCase("X")) {
+            if(decision.equalsIgnoreCase("X") && !Validate.hasRestrictedCharacters(endSubstring)) {
                 FilesCommander.replaceSubstring(path, startSubstring, endSubstring);
                 System.out.println("SUCCESSFUL");
+            } else {
+                System.out.println("NOT COMPLETED");
             }
             mainMenu();
         } catch (Exception e) {
